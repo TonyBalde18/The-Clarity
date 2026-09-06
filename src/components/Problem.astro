@@ -1,0 +1,102 @@
+---
+const painPoints = [
+  {
+    title: 'Too many ideas',
+    // TODO: refine copy in final brand voice pass
+    body: 'Every direction feels possible, so nothing gets finished. Focus keeps losing to the next good idea.',
+  },
+  {
+    title: 'Too much doing',
+    body: 'You are still the bottleneck for decisions that should not need you anymore.',
+  },
+  {
+    title: 'Lack of structure',
+    body: 'Things work, but only because you are holding them together. There is no system underneath.',
+  },
+  {
+    title: 'Unclear priorities',
+    body: 'Everything feels urgent, which means nothing actually is. It is hard to tell what matters most.',
+  },
+]
+---
+
+<section class="section problem" id="problem" aria-labelledby="problem-heading">
+  <div class="wrap">
+    <p class="eyebrow">The Problem</p>
+    <h2 id="problem-heading">Your business shouldn't<br />feel this complicated.</h2>
+    <!-- TODO: confirm final intro line -->
+    <p class="problem__intro">
+      Your business probably isn't as complicated as it feels. It just grew faster than
+      the structure underneath it — and now everything runs on your attention instead of a system.
+    </p>
+
+    <ul class="problem__grid">
+      {painPoints.map((point, index) => (
+        <li class="problem__item">
+          <span class="problem__index">{String(index + 1).padStart(2, '0')}</span>
+          <h3>{point.title}</h3>
+          <p>{point.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .problem {
+    background: var(--color-bg-alt);
+  }
+
+  .problem h2 {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    max-width: 18ch;
+    margin-block: 1rem 1.75rem;
+  }
+
+  .problem__intro {
+    max-width: 52ch;
+    font-size: 1.05rem;
+    color: var(--color-muted-moss);
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .problem__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 2.5rem 2rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 40rem) {
+    .problem__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .problem__item {
+    border-top: 1px solid rgba(38, 51, 47, 0.15);
+    padding-top: 1.5rem;
+  }
+
+  .problem__index {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--color-warm-ochre);
+    margin-bottom: 0.75rem;
+  }
+
+  .problem__item h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+
+  .problem__item p {
+    color: var(--color-muted-moss);
+    font-size: 0.98rem;
+    max-width: 34ch;
+  }
+</style>

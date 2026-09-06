@@ -1,0 +1,58 @@
+---
+import PlaceholderArt from './PlaceholderArt.astro';
+---
+
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="wrap hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow">Business Consultancy — UK</p>
+      <h1 id="hero-heading">Make your business<br />make sense.</h1>
+      <!-- TODO: confirm final subline copy with client -->
+      <p class="hero__sub">
+        For service-based founders who've outgrown the way they're running things.
+        We bring structure, strategy and space back into your business — so growth
+        stops feeling like chaos.
+      </p>
+      <a class="btn btn-primary" href="#contact">Work With Us</a>
+    </div>
+
+    <div class="hero__art">
+      <PlaceholderArt variant="hero" ratio="4 / 5" label="Architectural light through glass — placeholder for hero photography" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-top: clamp(3rem, 8vw, 6rem);
+    padding-bottom: var(--space-section);
+  }
+
+  .hero__inner {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    align-items: center;
+  }
+
+  .hero__copy h1 {
+    font-size: clamp(2.75rem, 7vw, 5.25rem);
+    margin-block: 1.1rem 1.5rem;
+  }
+
+  .hero__sub {
+    max-width: 38ch;
+    font-size: 1.05rem;
+    color: var(--color-muted-moss);
+    margin-bottom: 2.25rem;
+  }
+
+  @media (min-width: 62rem) {
+    .hero__inner {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .hero__art {
+      order: 2;
+    }
+  }
+</style>

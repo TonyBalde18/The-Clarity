@@ -1,0 +1,101 @@
+---
+const steps = [
+  {
+    title: 'See it',
+    // TODO: refine copy in final brand voice pass
+    body: 'We get a clear, honest picture of how your business actually runs today — not how it looks on paper.',
+  },
+  {
+    title: 'Simplify it',
+    body: 'We cut the noise. Fewer priorities, clearer decisions, less held together by memory alone.',
+  },
+  {
+    title: 'Strengthen it',
+    body: 'We put the right structure, systems and positioning underneath what is left.',
+  },
+  {
+    title: 'Scale it',
+    body: 'With the foundation sound, growth stops creating more chaos — it creates more freedom.',
+  },
+]
+---
+
+<section class="section approach" id="approach" aria-labelledby="approach-heading">
+  <div class="wrap">
+    <p class="eyebrow">The Approach</p>
+    <h2 id="approach-heading">A clear path,<br />not more strategy.</h2>
+
+    <ol class="approach__steps">
+      {steps.map((step, index) => (
+        <li class="approach__step">
+          <div class="approach__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</div>
+          <h3>{step.title}</h3>
+          <p>{step.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .approach h2 {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    max-width: 20ch;
+    margin-block: 1rem clamp(2.5rem, 6vw, 4.5rem);
+  }
+
+  .approach__steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+    grid-template-columns: 1fr;
+    border-top: 1px solid rgba(38, 51, 47, 0.15);
+  }
+
+  @media (min-width: 56rem) {
+    .approach__steps {
+      grid-template-columns: repeat(4, 1fr);
+      border-top: none;
+    }
+  }
+
+  .approach__step {
+    position: relative;
+    padding: 2rem 1.5rem 2rem 0;
+    border-bottom: 1px solid rgba(38, 51, 47, 0.15);
+  }
+
+  @media (min-width: 56rem) {
+    .approach__step {
+      border-bottom: none;
+      border-top: 1px solid rgba(38, 51, 47, 0.15);
+      border-right: 1px solid rgba(38, 51, 47, 0.15);
+      padding: 2rem 1.75rem;
+    }
+
+    .approach__step:last-child {
+      border-right: none;
+    }
+  }
+
+  .approach__number {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--color-warm-ochre);
+    margin-bottom: 1rem;
+  }
+
+  .approach__step h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .approach__step p {
+    color: var(--color-muted-moss);
+    font-size: 0.95rem;
+    max-width: 30ch;
+  }
+</style>

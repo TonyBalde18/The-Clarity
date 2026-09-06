@@ -1,0 +1,109 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="site-footer__brand">
+      <p class="wordmark">THE CLARITY</p>
+      <p class="tagline">Clarity through strategy. Growth through intention.</p>
+    </div>
+
+    <div class="site-footer__col">
+      <p class="col-heading">Contact</p>
+      <!-- TODO: replace with real contact details -->
+      <a href="mailto:hello@theclarity.co.uk">hello@theclarity.co.uk</a>
+      <span class="muted">London, UK</span>
+    </div>
+
+    <div class="site-footer__col">
+      <p class="col-heading">Follow</p>
+      <!-- TODO: replace with real social links -->
+      <a href="#" rel="noopener">Instagram</a>
+      <a href="#" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+
+  <div class="wrap site-footer__bottom">
+    <hr class="rule" />
+    <p class="fine-print">&copy; {year} The Clarity. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-deep-clarity);
+    color: var(--color-clarity-white);
+    padding-top: clamp(3rem, 7vw, 5rem);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+    padding-bottom: 3rem;
+  }
+
+  @media (min-width: 48rem) {
+    .site-footer__inner {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+
+  .site-footer .wordmark {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    margin: 0 0 0.75rem;
+  }
+
+  .tagline {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    color: var(--color-clear-sage);
+    max-width: 24ch;
+  }
+
+  .col-heading {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-clear-sage);
+    margin: 0 0 0.9rem;
+  }
+
+  .site-footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .site-footer__col a {
+    text-decoration: none;
+    color: var(--color-clarity-white);
+    font-size: 0.9rem;
+  }
+
+  .site-footer__col a:hover {
+    color: var(--color-warm-ochre);
+  }
+
+  .muted {
+    color: rgba(248, 247, 242, 0.6);
+    font-size: 0.9rem;
+  }
+
+  .site-footer__bottom .rule {
+    border-top-color: rgba(248, 247, 242, 0.2);
+    opacity: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .fine-print {
+    font-size: 0.78rem;
+    color: rgba(248, 247, 242, 0.55);
+    padding-bottom: 2rem;
+  }
+</style>

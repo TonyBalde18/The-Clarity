@@ -1,0 +1,60 @@
+---
+import PlaceholderArt from './PlaceholderArt.astro';
+---
+
+<section class="section about" id="about" aria-labelledby="about-heading">
+  <div class="wrap about__inner">
+    <div class="about__art">
+      <!-- TODO: replace with a real, art-directed founder photo (not a corporate headshot) -->
+      <PlaceholderArt variant="portrait" ratio="4 / 5" label="Founder photo placeholder — TODO: add real photography" />
+    </div>
+
+    <div class="about__copy">
+      <p class="eyebrow">About</p>
+      <h2 id="about-heading">Built by someone who's<br />run the chaos too.</h2>
+
+      <!-- TODO: replace with real founder bio in brand voice -->
+      <p>
+        The Clarity was founded on a simple observation: most founders don't need
+        more strategy. They need someone to help them see clearly, cut the noise,
+        and build something that doesn't depend entirely on them to keep running.
+      </p>
+      <p>
+        More strategy isn't always the answer. Better decisions are. That's the
+        work — helping founders make fewer, clearer, better decisions, and build
+        the structure to carry them out.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__inner {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    align-items: center;
+  }
+
+  .about__art {
+    max-width: 26rem;
+  }
+
+  .about__copy h2 {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    margin-block: 1rem 1.5rem;
+    max-width: 16ch;
+  }
+
+  .about__copy p {
+    color: var(--color-muted-moss);
+    max-width: 44ch;
+    margin-bottom: 1.1rem;
+    font-size: 1.02rem;
+  }
+
+  @media (min-width: 62rem) {
+    .about__inner {
+      grid-template-columns: 0.85fr 1.15fr;
+    }
+  }
+</style>
