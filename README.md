@@ -63,10 +63,15 @@ grep -rn "TODO" src public
 
 Images are currently rendered by a `<PlaceholderArt />` component (tone-on-tone
 geometric shapes in the brand palette) rather than stock photography, per the
-brand's imagery guidelines 
+brand's imagery guidelines. See `public/images/README.md` for exactly how to
+swap in real photography.
 
 ## Deploying to GitHub Pages
 
 This repo includes a GitHub Actions workflow at
 `.github/workflows/deploy.yml` that builds the site and deploys it to GitHub
-Pages automatically on every push to `main`.
+Pages automatically on every push to `main`. It's deployed as
+`TonyBalde18/The-Clarity`, and `astro.config.mjs` is already configured to
+match (`site: 'https://TonyBalde18.github.io'`, `base: '/The-Clarity/'`) — set
+the repo's **Settings → Pages → Source** to **GitHub Actions** and pushes to
+`main` deploy automatically.

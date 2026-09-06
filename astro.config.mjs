@@ -3,19 +3,17 @@ import { defineConfig } from 'astro/config';
 // ---------------------------------------------------------------------------
 // GitHub Pages (project page) config — CURRENT SETUP
 // ---------------------------------------------------------------------------
-// This site is deployed to: https://<your-github-username>.github.io/the-clarity/
+// This site is deployed to: https://TonyBalde18.github.io/The-Clarity/
 // `site` must be the root of that GitHub Pages account, and `base` must be
-// the repo name (with leading + trailing slash) so that all internal links,
-// the sitemap, and asset URLs resolve correctly under the /the-clarity/ path.
-//
-// TODO: replace <your-github-username> below with the actual GitHub username
-// or org this repo lives under before your first deploy.
+// the repo name (with leading + trailing slash, matching its exact case) so
+// that all internal links, the sitemap, and asset URLs resolve correctly
+// under the /The-Clarity/ path.
 //
 // ---------------------------------------------------------------------------
 // MOVING TO A CUSTOM DOMAIN LATER? Do this:
 // ---------------------------------------------------------------------------
 // 1. Set `site` to your custom domain, e.g. 'https://theclarity.co.uk'
-// 2. Set `base` to '/' (remove the '/the-clarity/' project-page path)
+// 2. Set `base` to '/' (remove the '/The-Clarity/' project-page path)
 // 3. Add a `public/CNAME` file containing just your domain name, e.g.
 //      theclarity.co.uk
 // 4. Configure the DNS records for your domain to point at GitHub Pages
@@ -25,6 +23,6 @@ import { defineConfig } from 'astro/config';
 // ---------------------------------------------------------------------------
 
 export default defineConfig({
-  site: 'https://your-github-username.github.io',
-  base: '/the-clarity/',
+  site: 'https://TonyBalde18.github.io',
+  base: '/The-Clarity/',
 });
