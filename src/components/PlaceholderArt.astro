@@ -2,29 +2,23 @@
 // -----------------------------------------------------------------------
 // PlaceholderArt.astro
 // -----------------------------------------------------------------------
-// TEMPORARY placeholder visual used until real photography is dropped in.
-// It renders a tone-on-tone geometric "light through glass" motif instead
-// of a stock photo of people/offices (see brand imagery guidelines).
+// TEMPORARY stand-in for the founder photo in the About section. It shows a
+// tone-on-tone geometric motif with a visible "Placeholder" tag, rather than
+// a stock photo of a person.
 //
-// TO REPLACE WITH A REAL IMAGE:
-//   1. Add your photo to /public/images/ (see /public/images/README.md)
-//   2. Swap the <PlaceholderArt ... /> usage for a plain <img>, e.g.
-//        <img src={`${import.meta.env.BASE_URL}images/hero.jpg`}
-//             alt="Describe the photo" width="1600" height="2000" loading="lazy" />
-//   3. Delete this component once nothing references it.
+// TO REPLACE WITH THE REAL PHOTO: follow the "Founder photo" steps in
+// IMAGES.md, then delete this component once nothing references it.
 // -----------------------------------------------------------------------
 
 interface Props {
-  variant?: 'hero' | 'window' | 'abstract' | 'portrait';
   ratio?: string; // e.g. '4 / 5'
-  label?: string; // short internal note, not shown to visitors
-  class?: string;
+  label?: string; // accessible description of what will go here
 }
 
-const { variant = 'window', ratio = '4 / 5', label = 'placeholder', class: className = '' } = Astro.props;
+const { ratio = '4 / 5', label = 'Image placeholder' } = Astro.props;
 ---
 
-<div class={`placeholder-art placeholder-art--${variant} ${className}`} style={`aspect-ratio: ${ratio};`} role="img" aria-label={label}>
+<div class="placeholder-art" style={`aspect-ratio: ${ratio};`} role="img" aria-label={label}>
   <svg viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true" focusable="false">
     <rect width="400" height="500" class="pa-bg" />
     <line x1="200" y1="0" x2="200" y2="500" class="pa-line" />
@@ -32,7 +26,7 @@ const { variant = 'window', ratio = '4 / 5', label = 'placeholder', class: class
     <line x1="0" y1="0" x2="400" y2="500" class="pa-line pa-line--diagonal" />
     <rect x="40" y="60" width="320" height="380" class="pa-frame" />
   </svg>
-  <span class="placeholder-art__tag">Placeholder</span>
+  <span class="placeholder-art__tag" aria-hidden="true">Placeholder</span>
 </div>
 
 <style>
@@ -50,13 +44,14 @@ const { variant = 'window', ratio = '4 / 5', label = 'placeholder', class: class
   }
 
   .pa-bg {
-    fill: var(--color-soft-stone);
+    fill: var(--color-muted-moss);
   }
 
-  .pa-line {
-    stroke: var(--color-muted-moss);
+  .pa-line,
+  .pa-frame {
+    stroke: var(--color-clarity-white);
     stroke-width: 1;
-    opacity: 0.35;
+    opacity: 0.3;
   }
 
   .pa-line--diagonal {
@@ -65,36 +60,7 @@ const { variant = 'window', ratio = '4 / 5', label = 'placeholder', class: class
 
   .pa-frame {
     fill: none;
-    stroke: var(--color-clear-sage);
     stroke-width: 1.5;
-    opacity: 0.6;
-  }
-
-  .placeholder-art--hero .pa-bg {
-    fill: var(--color-deep-clarity);
-  }
-  .placeholder-art--hero .pa-line,
-  .placeholder-art--hero .pa-frame {
-    stroke: var(--color-clear-sage);
-    opacity: 0.5;
-  }
-
-  .placeholder-art--abstract .pa-bg {
-    fill: var(--color-clear-sage);
-  }
-  .placeholder-art--abstract .pa-line,
-  .placeholder-art--abstract .pa-frame {
-    stroke: var(--color-deep-clarity);
-    opacity: 0.25;
-  }
-
-  .placeholder-art--portrait .pa-bg {
-    fill: var(--color-muted-moss);
-  }
-  .placeholder-art--portrait .pa-line,
-  .placeholder-art--portrait .pa-frame {
-    stroke: var(--color-clarity-white);
-    opacity: 0.3;
   }
 
   .placeholder-art__tag {

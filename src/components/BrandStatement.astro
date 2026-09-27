@@ -1,11 +1,17 @@
 ---
-import PlaceholderArt from './PlaceholderArt.astro';
+import Photo from './Photo.astro';
+import statementImage from '../assets/images/brand-statement-geometry.jpg';
 ---
 
-<section class="section brand-statement" aria-labelledby="brand-statement-heading">
+<section class="section brand-statement on-dark" aria-labelledby="brand-statement-heading">
   <div class="wrap brand-statement__inner">
     <div class="brand-statement__art">
-      <PlaceholderArt variant="abstract" ratio="1 / 1" label="Abstract geometric light motif — placeholder" />
+      <Photo
+        src={statementImage}
+        alt="A white architectural column catching sunlight against a dark curved wall and pale sky"
+        ratio="4 / 5"
+        sizes="(min-width: 62rem) 22rem, 100vw"
+      />
     </div>
     <p id="brand-statement-heading" class="brand-statement__text">
       Clarity isn't about doing less.<br />

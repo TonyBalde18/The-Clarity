@@ -1,16 +1,19 @@
 ---
+import { mailto } from '../data/site';
+
+interface Props {
+  /** Pre-filled email subject, e.g. the service the visitor was reading about. */
+  subject?: string;
+}
+
+const { subject } = Astro.props;
 ---
 
 <section class="section final-cta" id="contact" aria-labelledby="final-cta-heading">
   <div class="wrap final-cta__inner">
     <p class="eyebrow">Start Here</p>
-    <h2 id="final-cta-heading">You don't need more noise.<br />You need clarity.</h2>
-    <!-- TODO: confirm final CTA copy and where enquiries should go -->
-    <p class="final-cta__sub">
-      If your business feels harder to run than it should, let's talk about
-      what's actually going on — and what to do about it.
-    </p>
-    <a class="btn btn-primary" href="mailto:hello@theclarity.co.uk">Work With Us</a>
+    <h2 id="final-cta-heading">You don't need more noise.</h2>
+    <a class="btn btn-primary" href={mailto(subject)}>Work with us</a>
   </div>
 </section>
 
@@ -29,13 +32,6 @@
 
   .final-cta h2 {
     font-size: clamp(2.25rem, 6vw, 3.75rem);
-    margin-block: 1rem 1.5rem;
-  }
-
-  .final-cta__sub {
-    color: var(--color-muted-moss);
-    max-width: 40ch;
-    margin-bottom: 2.25rem;
-    font-size: 1.05rem;
+    margin-block: 1rem 2.25rem;
   }
 </style>

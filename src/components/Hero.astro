@@ -1,5 +1,7 @@
 ---
-import PlaceholderArt from './PlaceholderArt.astro';
+import Photo from './Photo.astro';
+import heroImage from '../assets/images/hero-architecture-light.jpg';
+import { withBase } from '../data/site';
 ---
 
 <section class="hero" aria-labelledby="hero-heading">
@@ -7,17 +9,22 @@ import PlaceholderArt from './PlaceholderArt.astro';
     <div class="hero__copy">
       <p class="eyebrow">Business Consultancy — UK</p>
       <h1 id="hero-heading">Make your business<br />make sense.</h1>
-      <!-- TODO: confirm final subline copy with client -->
       <p class="hero__sub">
-        For service-based founders who've outgrown the way they're running things.
-        We bring structure, strategy and space back into your business — so growth
-        stops feeling like chaos.
+        For service-based founders who've outgrown the way they've been running their
+        business. We bring clarity to the strategy, structure and systems behind it, so
+        you can grow without creating more complexity.
       </p>
-      <a class="btn btn-primary" href="#contact">Work With Us</a>
+      <a class="btn btn-primary" href={withBase('#contact')}>Work with us</a>
     </div>
 
     <div class="hero__art">
-      <PlaceholderArt variant="hero" ratio="4 / 5" label="Architectural light through glass — placeholder for hero photography" />
+      <Photo
+        src={heroImage}
+        alt="Clean white architectural lines casting soft, rhythmic shadows in natural light"
+        ratio="4 / 5"
+        sizes="(min-width: 62rem) 40vw, 100vw"
+        priority
+      />
     </div>
   </div>
 </section>
@@ -40,7 +47,7 @@ import PlaceholderArt from './PlaceholderArt.astro';
   }
 
   .hero__sub {
-    max-width: 38ch;
+    max-width: 44ch;
     font-size: 1.05rem;
     color: var(--color-muted-moss);
     margin-bottom: 2.25rem;

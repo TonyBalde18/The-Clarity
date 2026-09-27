@@ -1,0 +1,307 @@
+---
+// Shared template for the four service pages. Content comes from
+// src/data/services.ts — edit copy there, not here.
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FinalCta from '../components/FinalCta.astro';
+import Photo from '../components/Photo.astro';
+import { services, type Service } from '../data/services';
+import { SITE_NAME, mailto, withBase } from '../data/site';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+const otherServices = services.filter((s) => s.slug !== service.slug);
+---
+
+<Layout title={`${service.title} | ${SITE_NAME}`} description={service.metaDescription}>
+  <Header current={service.slug} />
+  <main id="main">
+    <!-- TODO: client copy -->
+    <section class="svc-hero" aria-labelledby="svc-title">
+      <div class="wrap svc-hero__inner">
+        <div class="svc-hero__copy">
+          <p class="eyebrow">Services — {service.navLabel}</p>
+          <h1 id="svc-title">{service.title}</h1>
+          <p class="svc-hero__intro">{service.intro}</p>
+          <a class="btn btn-primary" href={mailto(service.title)}>Work with us</a>
+        </div>
+        <div class="svc-hero__art">
+          <Photo
+            src={service.image}
+            alt={service.imageAlt}
+            ratio="4 / 3"
+            sizes="(min-width: 62rem) 45vw, 100vw"
+            priority
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- TODO: client copy -->
+    <section class="section svc-block svc-block--alt" aria-labelledby="svc-who">
+      <div class="wrap svc-split">
+        <div>
+          <p class="eyebrow">Who it's for</p>
+          <h2 id="svc-who">Is this you?</h2>
+        </div>
+        <ul class="svc-list">
+          {service.whoFor.map((line) => <li>{line}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <!-- TODO: client copy -->
+    <section class="section svc-block" aria-labelledby="svc-problems">
+      <div class="wrap">
+        <p class="eyebrow">The problems it solves</p>
+        <h2 id="svc-problems">What gets in the way.</h2>
+        <ul class="svc-grid svc-grid--3">
+          {service.problems.map((problem) => (
+            <li class="svc-card">
+              <h3>{problem.title}</h3>
+              <p>{problem.body}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- TODO: client copy -->
+    <section class="section svc-block svc-block--alt" aria-labelledby="svc-included">
+      <div class="wrap">
+        <p class="eyebrow">What's included</p>
+        <h2 id="svc-included">How it works.</h2>
+        <ol class="svc-grid svc-grid--4">
+          {service.included.map((step, index) => (
+            <li class="svc-card">
+              <span class="svc-card__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- TODO: client copy -->
+    <section class="section svc-block svc-outcomes on-dark" aria-labelledby="svc-outcomes">
+      <div class="wrap svc-split">
+        <div>
+          <p class="eyebrow">Outcomes</p>
+          <h2 id="svc-outcomes">What changes.</h2>
+        </div>
+        <ul class="svc-list svc-list--inverse">
+          {service.outcomes.map((line) => <li>{line}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <FinalCta subject={service.title} />
+
+    <nav class="svc-other" aria-labelledby="svc-other-heading">
+      <div class="wrap">
+        <hr class="rule" />
+        <h2 id="svc-other-heading" class="svc-other__heading">Other services</h2>
+        <ul class="svc-other__list">
+          {otherServices.map((other) => (
+            <li><a href={withBase(`services/${other.slug}/`)}>{other.title}</a></li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* Hero ------------------------------------------------------------------ */
+  .svc-hero {
+    padding-block: clamp(3rem, 8vw, 6rem) var(--space-section);
+  }
+
+  .svc-hero__inner {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    align-items: center;
+  }
+
+  .svc-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    margin-block: 1.1rem 1.5rem;
+    max-width: 16ch;
+  }
+
+  .svc-hero__intro {
+    max-width: 40ch;
+    font-size: 1.15rem;
+    color: var(--color-muted-moss);
+    margin-bottom: 2.25rem;
+  }
+
+  @media (min-width: 62rem) {
+    .svc-hero__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* Shared section styles ------------------------------------------------ */
+  .svc-block h2 {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    margin-block: 1rem clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .svc-block--alt {
+    background: var(--color-bg-alt);
+  }
+
+  /* Soft Stone background: darker moss keeps secondary text at WCAG AA. */
+  .svc-block--alt .eyebrow,
+  .svc-block--alt .svc-card p {
+    color: var(--color-text-muted-on-stone);
+  }
+
+  .svc-split {
+    display: grid;
+    gap: 1rem clamp(2rem, 6vw, 5rem);
+  }
+
+  @media (min-width: 56rem) {
+    .svc-split {
+      grid-template-columns: 0.8fr 1.2fr;
+      align-items: start;
+    }
+    .svc-split h2 {
+      margin-bottom: 0;
+    }
+  }
+
+  .svc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .svc-list li {
+    font-family: var(--font-serif);
+    font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+    line-height: 1.3;
+    padding-block: 1.25rem;
+    border-top: 1px solid rgba(38, 51, 47, 0.2);
+  }
+
+  .svc-list li:last-child {
+    border-bottom: 1px solid rgba(38, 51, 47, 0.2);
+  }
+
+  .svc-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 2.5rem 2rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 40rem) {
+    .svc-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 62rem) {
+    .svc-grid--3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .svc-grid--4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .svc-card {
+    border-top: 1px solid rgba(38, 51, 47, 0.2);
+    padding-top: 1.5rem;
+  }
+
+  .svc-card__number {
+    display: block;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--color-deep-clarity);
+    margin-bottom: 0.75rem;
+  }
+
+  .svc-card h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+
+  .svc-card p {
+    color: var(--color-muted-moss);
+    font-size: 0.98rem;
+    max-width: 34ch;
+  }
+
+  /* Outcomes (dark) ------------------------------------------------------ */
+  .svc-outcomes {
+    background: var(--color-deep-clarity);
+    color: var(--color-clarity-white);
+  }
+
+  .svc-outcomes h2 {
+    color: var(--color-clarity-white);
+  }
+
+  .svc-outcomes .eyebrow {
+    color: var(--color-clear-sage);
+  }
+
+  .svc-list--inverse li {
+    border-color: rgba(248, 247, 242, 0.2);
+  }
+
+  .svc-list--inverse li:last-child {
+    border-bottom-color: rgba(248, 247, 242, 0.2);
+  }
+
+  /* Other services ------------------------------------------------------- */
+  .svc-other {
+    padding-bottom: clamp(3rem, 7vw, 5rem);
+  }
+
+  .svc-other__heading {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-moss);
+    margin-block: 2rem 1.25rem;
+  }
+
+  .svc-other__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 2.5rem;
+  }
+
+  .svc-other__list a {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    text-decoration: none;
+    text-underline-offset: 0.3em;
+  }
+
+  .svc-other__list a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--color-warm-ochre);
+  }
+</style>

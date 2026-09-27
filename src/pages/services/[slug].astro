@@ -1,0 +1,14 @@
+---
+// Generates /services/strategy/, /services/systems/, /services/brand/ and
+// /services/growth/ from src/data/services.ts.
+import type { GetStaticPaths } from 'astro';
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import { services } from '../../data/services';
+
+export const getStaticPaths = (() =>
+  services.map((service) => ({ params: { slug: service.slug }, props: { service } }))) satisfies GetStaticPaths;
+
+const { service } = Astro.props;
+---
+
+<ServiceLayout service={service} />

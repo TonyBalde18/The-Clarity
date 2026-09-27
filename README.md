@@ -38,33 +38,46 @@ npm run preview
 
 ```
 src/
-  components/     One .astro component per homepage section, plus
-                   Header, Footer, and PlaceholderArt (temporary imagery)
+  assets/images/     Source photography (optimised by Astro at build time)
+  components/        One .astro component per homepage section, plus
+                     Header, Footer, Photo (optimised images) and
+                     PlaceholderArt (founder photo stand-in)
+  data/
+    services.ts      The four services: nav labels, full titles, page copy
+    site.ts          Contact email, social links, base-aware link helper
   layouts/
-    Layout.astro   Shared <head>, fonts, meta tags
+    Layout.astro         Shared <head>: meta, Open Graph, favicon
+    ServiceLayout.astro  Shared template for every service page
   pages/
-    index.astro    Assembles all sections into the single homepage
+    index.astro            Homepage
+    services/[slug].astro  /services/strategy|systems|brand|growth/
+    404.astro              Not-found page
   styles/
-    global.css     Brand colours, type scale, layout primitives
+    global.css       Brand colours, type scale, buttons, layout primitives
 public/
-  images/          Drop real photography here (see public/images/README.md)
-  favicon.svg
+  favicon.svg, apple-touch-icon.png, og-image.jpg (social share image)
+IMAGES.md            Photo credits and how to swap images
 ```
+
+### Links and the base path
+
+The site is served from `/The-Clarity/`, so never hard-code root paths like
+`/services/brand/` or `#about`. Use `withBase()` from `src/data/site.ts`:
+`withBase('services/brand/')`, `withBase('#about')`.
 
 ## Placeholder content
 
-Text and imagery marked `TODO` throughout the codebase are placeholders
-written in The Clarity's brand voice, not final copy. Search the codebase for
-`TODO` to find everything that still needs a real pass:
+Text marked `TODO` in the codebase is placeholder copy written in The
+Clarity's brand voice, not final copy. The service-page copy lives in
+`src/data/services.ts`. Search for `TODO` to find everything that still
+needs a real pass:
 
 ```bash
-grep -rn "TODO" src public
+grep -rn "TODO" src
 ```
 
-Images are currently rendered by a `<PlaceholderArt />` component (tone-on-tone
-geometric shapes in the brand palette) rather than stock photography, per the
-brand's imagery guidelines. See `public/images/README.md` for exactly how to
-swap in real photography.
+Photography credits, and how to replace any image (including adding the
+founder photo), are in `IMAGES.md`.
 
 ## Deploying to GitHub Pages
 

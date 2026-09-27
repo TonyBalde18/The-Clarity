@@ -1,27 +1,40 @@
 ---
+import { services } from '../data/services';
+import { EMAIL, SOCIAL_LINKS, mailto, withBase } from '../data/site';
+
 const year = new Date().getFullYear();
+// Social links without a URL yet are hidden (see SOCIAL_LINKS in src/data/site.ts).
+const socials = SOCIAL_LINKS.filter((link) => link.href);
 ---
 
-<footer class="site-footer">
+<footer class="site-footer on-dark">
   <div class="wrap site-footer__inner">
     <div class="site-footer__brand">
       <p class="wordmark">THE CLARITY</p>
       <p class="tagline">Clarity through strategy. Growth through intention.</p>
     </div>
 
+    <nav class="site-footer__col" aria-label="Services">
+      <p class="col-heading">Services</p>
+      {services.map((service) => (
+        <a href={withBase(`services/${service.slug}/`)}>{service.navLabel}</a>
+      ))}
+    </nav>
+
     <div class="site-footer__col">
       <p class="col-heading">Contact</p>
-      <!-- TODO: replace with real contact details -->
-      <a href="mailto:hello@theclarity.co.uk">hello@theclarity.co.uk</a>
+      <a href={mailto()}>{EMAIL}</a>
       <span class="muted">London, UK</span>
     </div>
 
-    <div class="site-footer__col">
-      <p class="col-heading">Follow</p>
-      <!-- TODO: replace with real social links -->
-      <a href="#" rel="noopener">Instagram</a>
-      <a href="#" rel="noopener">LinkedIn</a>
-    </div>
+    {socials.length > 0 && (
+      <div class="site-footer__col">
+        <p class="col-heading">Follow</p>
+        {socials.map((link) => (
+          <a href={link.href} rel="noopener">{link.label}</a>
+        ))}
+      </div>
+    )}
   </div>
 
   <div class="wrap site-footer__bottom">
@@ -46,7 +59,11 @@ const year = new Date().getFullYear();
 
   @media (min-width: 48rem) {
     .site-footer__inner {
-      grid-template-columns: 2fr 1fr 1fr;
+      /* Brand column, then one equal column per link group (Follow appears
+         once social links are added). */
+      grid-template-columns: 2fr;
+      grid-auto-columns: 1fr;
+      grid-auto-flow: column;
     }
   }
 

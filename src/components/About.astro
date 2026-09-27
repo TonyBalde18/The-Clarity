@@ -5,13 +5,15 @@ import PlaceholderArt from './PlaceholderArt.astro';
 <section class="section about" id="about" aria-labelledby="about-heading">
   <div class="wrap about__inner">
     <div class="about__art">
-      <!-- TODO: replace with a real, art-directed founder photo (not a corporate headshot) -->
-      <PlaceholderArt variant="portrait" ratio="4 / 5" label="Founder photo placeholder — TODO: add real photography" />
+      <!-- TODO: founder photo. Replace this placeholder with a real, art-directed
+           photo of the founder (not a stock image or corporate headshot).
+           See IMAGES.md for how to add it. -->
+      <PlaceholderArt ratio="4 / 5" label="Placeholder for a photograph of the founder" />
     </div>
 
     <div class="about__copy">
       <p class="eyebrow">About</p>
-      <h2 id="about-heading">Built by someone who's<br />run the chaos too.</h2>
+      <h2 id="about-heading">Built by someone who's been in the complexity.</h2>
 
       <!-- TODO: replace with real founder bio in brand voice -->
       <p>
@@ -42,7 +44,7 @@ import PlaceholderArt from './PlaceholderArt.astro';
   .about__copy h2 {
     font-size: clamp(2rem, 4.5vw, 3rem);
     margin-block: 1rem 1.5rem;
-    max-width: 16ch;
+    max-width: 17ch;
   }
 
   .about__copy p {

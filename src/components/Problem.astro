@@ -6,8 +6,8 @@ const painPoints = [
     body: 'Every direction feels possible, so nothing gets finished. Focus keeps losing to the next good idea.',
   },
   {
-    title: 'Too much doing',
-    body: 'You are still the bottleneck for decisions that should not need you anymore.',
+    title: 'Too much on you',
+    body: 'You are still the bottleneck for decisions that should not need you any more.',
   },
   {
     title: 'Lack of structure',
@@ -33,7 +33,7 @@ const painPoints = [
     <ul class="problem__grid">
       {painPoints.map((point, index) => (
         <li class="problem__item">
-          <span class="problem__index">{String(index + 1).padStart(2, '0')}</span>
+          <span class="problem__index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
           <h3>{point.title}</h3>
           <p>{point.body}</p>
         </li>
@@ -47,16 +47,22 @@ const painPoints = [
     background: var(--color-bg-alt);
   }
 
+  /* Soft Stone background: use the darker moss so secondary text meets AA. */
+  .problem .eyebrow,
+  .problem__intro,
+  .problem__item p {
+    color: var(--color-text-muted-on-stone);
+  }
+
   .problem h2 {
     font-size: clamp(2.25rem, 5vw, 3.5rem);
-    max-width: 18ch;
+    max-width: 24ch;
     margin-block: 1rem 1.75rem;
   }
 
   .problem__intro {
     max-width: 52ch;
     font-size: 1.05rem;
-    color: var(--color-muted-moss);
     margin-bottom: clamp(2.5rem, 6vw, 4rem);
   }
 
@@ -95,7 +101,6 @@ const painPoints = [
   }
 
   .problem__item p {
-    color: var(--color-muted-moss);
     font-size: 0.98rem;
     max-width: 34ch;
   }

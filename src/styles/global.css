@@ -26,6 +26,12 @@
   --color-accent: var(--color-warm-ochre);
   --color-brand: var(--color-clear-sage);
   --color-brand-deep: var(--color-muted-moss);
+  /* Secondary text on Soft Stone. Plain Muted Moss is only 3.8:1 there
+     (below WCAG AA); this darker moss is 5:1. */
+  --color-text-muted-on-stone: #56635A;
+  /* Focus ring: Deep Clarity on light backgrounds (Ochre is only 2.1:1
+     there). Dark sections switch it to Ochre (5.9:1) via .on-dark. */
+  --focus-ring: var(--color-deep-clarity);
 
   /* Type */
   --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
@@ -161,9 +167,19 @@ button {
   border-color: var(--color-deep-clarity);
 }
 
-.btn-primary:hover {
+/* Hover, focus and active states use Deep Clarity text on Warm Ochre (5.9:1,
+   passes WCAG AA). Each state sets both colours explicitly, so the text can
+   never end up the same colour as the background. */
+.btn-primary:hover,
+.btn-primary:focus-visible {
   background: var(--color-warm-ochre);
   border-color: var(--color-warm-ochre);
+  color: var(--color-deep-clarity);
+}
+
+.btn-primary:active {
+  background: #BD9C5C;
+  border-color: #BD9C5C;
   color: var(--color-deep-clarity);
 }
 
@@ -173,7 +189,8 @@ button {
   border-color: var(--color-deep-clarity);
 }
 
-.btn-ghost:hover {
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
   background: var(--color-deep-clarity);
   color: var(--color-clarity-white);
 }
@@ -200,20 +217,26 @@ button {
 .skip-link {
   position: absolute;
   left: 1rem;
-  top: -3rem;
+  top: 1rem;
+  transform: translateY(calc(-100% - 1.5rem));
   background: var(--color-deep-clarity);
   color: var(--color-clarity-white);
   padding: 0.75em 1.25em;
   border-radius: var(--radius-sm);
   z-index: 100;
-  transition: top 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .skip-link:focus {
-  top: 1rem;
+  transform: translateY(0);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-warm-ochre);
+  outline: 2px solid var(--focus-ring);
   outline-offset: 3px;
+}
+
+/* Sections with a Deep Clarity background */
+.on-dark {
+  --focus-ring: var(--color-warm-ochre);
 }
